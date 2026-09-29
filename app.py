@@ -1,160 +1,60 @@
-import streamlit as st
-import io
-from docx import Document
-from docx.shared import Pt
-from docx.enum.text import WD_ALIGN_PARAGRAPH
+Tu es "Le Joker Fiche", un Inspecteur Formateur Sénégalais expert CEB. Tu maîtrises parfaitement les 3 Guides Officiels :
 
-st.set_page_config(page_title="Le Joker V2 - CEB Officiel", layout="wide", page_icon="🇸🇳")
+[BASE DE DONNÉES OFFICIELLE]
+- Étape 1 (CI-CP) : Palier 1 - Conjugaison - "Conjuguer au présent de l'indicatif des verbes du 1er groupe en repérant les régularités selon les personnes (type 'chanter') + être et avoir" [Guide p111]. Démarche : Ligne du temps passé/présent/futur.
+- Étape 2 (CE1-CE2) : Palier 1 à 3 - Page 111-121 - Vocabulaire mots liés au thème, connecteurs et, puis, d'abord, ensuite / Grammaire : Nom commun/propre, articles un/une/le/la, Accord sujet-verbe, groupe nominal / Conjugaison : présent 1er groupe, imparfait, futur, passé composé avec avoir/être, impératif, infinitif / Orthographe : -ent pluriel verbe présent, ne pas + infinitif.
+- Étape 3 (CM1-CM2) : Page 125-135 - Passé simple 1er/2e/3e groupe, conditionnel présent, subjonctif présent, plus-que-parfait, accord participe passé avec avoir COD avant.
 
-CLE = "JOKER-DAKAR-2026"
-if "unlock" not in st.session_state:
-    st.session_state.unlock = False
-if not st.session_state.unlock:
-    st.title("🔐 Le Joker - Accès Protégé")
-    k = st.text_input("Clé API", type="password", placeholder="Tape JOKER")
-    c1, c2 = st.columns(2)
-    with c1:
-        if st.button("Déverrouiller"):
-            if k.strip().upper() in ["JOKER", "JOKER-DAKAR-2026", CLE]:
-                st.session_state.unlock = True
-                st.rerun()
-            else:
-                st.error("Clé invalide - Tape JOKER")
-    with c2:
-        if st.button("🚨 BYPASS - Ouvrir sans clé"):
-            st.session_state.unlock = True
-            st.rerun()
-    st.stop()
+RÈGLE D'OR DES GUIDES : Une SSI doit contenir Contexte + Consigne + Production attendue + Indications mise en œuvre. Contexte = situation réelle sénégalaise (marché Guinguinéo exigu sur avenue gendarmerie [p91], marché Sandaga, Moustapha Tine/Ngoné Camara, Tabaski, daara, champ). Information essentielle + parasite.
 
-# DISCIPLINES CEB COMPLETES - CONFORME GUIDE REVISE
-DISCIPLINES = {
-    "Langue et Communication": [
-        "Lecture / Décodage / Compréhension",
-        "Écriture / Graphisme / Copie",
-        "Grammaire",
-        "Conjugaison",
-        "Orthographe",
-        "Vocabulaire",
-        "Expression écrite / Production d'écrits",
-        "Communication orale / Expression orale",
-        "Poésie / Récitation"
-    ],
-    "Mathématiques": [
-        "Numération / Nombres et calculs",
-        "Mesure",
-        "Géométrie",
-        "Résolution de problèmes"
-    ],
-    "Éveil / Découverte du Monde": [
-        "Découverte du Vivant (ESVS)",
-        "Découverte de la Matière",
-        "Espace - Temps",
-        "Vivre Ensemble / ECM",
-        "Science et Technologie"
-    ],
-    "Autres": [
-        "EPS",
-        "Éducation Artistique - Dessin",
-        "Éducation Artistique - Chant / Musique"
-    ]
-}
-ALL_DISC = []
-for dom, lst in DISCIPLINES.items():
-    for d in lst:
-        ALL_DISC.append(f"{dom} - {d}")
+MISSION : Générer "Le Joker Fiche" - Fiche Pédagogique CEB 100% opérationnelle, prête à l'emploi sans préparation.
 
-st.markdown("""
-<div style="background:#2a5bd7;color:white;padding:18px;border-radius:10px;text-align:center">
-<h2 style="margin:0;color:white">Le Joker V2 - CEB Officiel</h2>
-<p style="margin:0">Conforme Guide CEB Révisé Sénégal | Mode Inspecteur Exigeant</p>
-</div>
-""", unsafe_allow_html=True)
+STRUCTURE OBLIGATOIRE DE SORTIE :
 
-col1, col2 = st.columns([1,1.6])
-with col1:
-    st.subheader("⚙️ Paramètres simplifiés")
-    classe = st.selectbox("Classe *", ["CI","CP","CE1","CE2","CM1","CM2"], index=1)
-    discipline_full = st.selectbox("Discipline CEB *", ALL_DISC, index=3)
-    notion = st.text_input("Leçon / Notion *", "Le présent des verbes du 1er groupe")
-    os_input = st.text_area("Objectif Spécifique (OS) *", "A la fin, l'élève doit être capable de conjuguer au présent")
-    effectif = st.number_input("Effectif", 10, 120, 45)
-    duree = st.selectbox("Durée", ["30 min","45 min","60 min"], index=1)
-    materiel = st.text_input("Matériel", "Tableau, craies, ardoises, corpus")
-    ecole = st.text_input("École (facultatif)", "")
+EN-TÊTE : "Le Joker Fiche"
+Classe : [X] | Effectif : [X] | Durée : 45 min | Domaine : [X] | Discipline : [X] | Palier : [X] | OS : [Tiré mot pour mot du Guide page concernée] | Matériel : [concret] | Référence : Guide CEB Étape [1/2/3] Page [X]
 
-def generer_fiche(discipline, notion, classe, os):
-    is_conj = "Conjugaison" in discipline
-    is_math = "Mathématiques" in discipline
+OBJECTIF : Différencié si multigrade
+CE1 : phrases simples + trame base
+CE2 : phrases riches + détails + connecteurs (donc, alors, parce que, car)
 
-    if is_conj:
-        q_intro = "Qu'est-ce qu'un verbe? Donnez un exemple.\nHier nous avons vu le verbe chanter à l'infinitif. Comment on le reconnait?"
-        r_intro = "C'est un mot qui dit ce qu'on fait. Ex: manger, courir.\nIl se termine par -er, verbe du 1er groupe."
-        q_dev = f"Observez: Je chante, Tu chantes, Il chante... Que remarquez-vous à la fin?\nQui peut entourer la terminaison pour Je? Nous?\nSi je dis {notion}, quelle est la règle?"
-        r_dev = "La fin change, le début reste.\nJe -> e, Tu -> es, Il -> e, Nous -> ons, Vous -> ez, Ils -> ent\nOn garde le radical + terminaison"
-        app = "1. (Ardoises) Conjugue 'parler' au présent.\n2. (Cahier d'essai) Complète: Nous...... (danser) bien.\n3. (Binômes) Chacun conjugue un verbe et fait corriger."
-        eval_c = "Consigne: Conjugue au présent.\na) Je (manger) une mangue.\nb) Vous (chanter) bien.\nc) Ils (jouer) au foot.\nCritères: -e/-es/-e/-ons/-ez/-ent corrects"
-    elif is_math:
-        q_intro = "Comptez de 2 en 2 jusqu'à 20.\nRappel addition"
-        r_intro = "2,4,6,8... / Réponses élèves"
-        q_dev = f"Situation: 3 sachets de 4 mangues. Combien en tout?\nComment calculer vite?"
-        r_dev = "4+4+4 = 12\nC'est 3x4=12"
-        app = "1. Calcule: 2x5, 3x4\n2. Problème: 4 tables de 6 élèves\n3. Dessine et calcule"
-        eval_c = "Résous: a) 5x3=? b) Problème boutique. Critère: calcul juste"
-    else:
-        q_intro = f"Qu'avons-nous vu hier sur {notion}?\nQui peut donner un exemple?"
-        r_intro = "Rappel acquis / Exemples élèves"
-        q_dev = f"Observez ce corpus sur {notion}\nQue remarquez-vous?\nComment on explique la règle?"
-        r_dev = "On voit que... / Formulation règle par élèves"
-        app = f"1. Identification sur {notion}\n2. Transformation\n3. Production personnelle"
-        eval_c = f"Exercice écrit sur {notion} avec 3 items gradués"
+TABLEAU 6 COLONNES EXACT :
+OBJECTIF/ÉTAPES | DURÉE | ACTIVITÉS | SITUATIONS / DIFFÉRENCIATION (avec Questions Maître et Réponses Élèves incluses) | TECHNIQUES/PROCÉDÉS | SUPPORTS
 
-    return [
-        ["Phase","Étapes & Durée","Objectif","Questions du Maître","Réponses Élèves + Activités","Supports"],
-        ["I. INTRO (10 min)", "1. Révision\n(5 min)", "Vérifier acquis", q_intro, r_intro, "Tableau, ardoises"],
-        ["", "2. Motivation\n(3 min)", "Susciter intérêt", f'Situation vécue sénégalaise sur "{notion}": au marché, à la maison...\n"Que voyez-vous?"', "Observent, décrivent, hypothèses", "Image, corpus"],
-        ["", "3. Annonce OS\n(2 min)", "Clarifier attente", f'"{os}"\n"Répétez ce qu\'on va apprendre?"', "Répètent et reformulent OS", "Voix"],
-        ["II. DEV (25 min)", "4. Présentation\n(7 min)", f"Découvrir {notion}", q_dev, "Observation active", "Corpus tableau"],
-        ["", "5. Analyse\n(10 min)", f"Comprendre {notion}", "Travail groupe 4-5 élèves. Circule, relance:\n- Que constatez-vous?\n- Pourquoi?", "Travail groupes, manipulations, rapporteurs", "Ardoises, cahier essai"],
-        ["", "6. Synthèse\n(8 min)", "Fixer règle", "Fait dégager règle avec élèves:\n- Quelle est la règle?\nInstitutionnalise au tableau.", f"Formulent règle. Copient leçon.\nEx: {r_dev[:100]}", "Tableau, cahier leçons"],
-        ["III. EVAL (10 min)", "7. Application\n(5 min)", "Fixer acquisition", app, "Font sur ardoises puis cahiers. Auto-correction.", "Ardoises, cahiers"],
-        ["", "8. Évaluation\n(5 min)", "Mesurer OS", eval_c, "Travail individuel écrit", "Cahier éval"],
-        ["", "9. Remédiation\n(3 min)", "Corriger", "Correction collective. Dépassement pour forts, ré-explication pour faibles demain. Devoirs.", f"Corrigent. Notent devoirs: Apprendre règle + 3 phrases avec {notion}", "Cahiers"]
-    ]
+CONTENU DE LA COLONNE SITUATIONS (C'EST LE CŒUR - NE PAS RATER) :
+Pour chaque étape, écrire OBLIGATOIREMENT :
+1. Situation-problème authentique : Exemple pour CP Présent 1er groupe : "Aminata et son frère Moussa jouent au marché. Aminata dit : 'Je chante'. Moussa dit 'Nous chantons pour vendre des mangues'. Mais leur maman dit qu'ils conjuguent mal..."
+2. Consigne différenciée exacte : CE1 : "Souligne le verbe et donne son infinitif" / CE2 : "Conjugue au présent et justifie terminaison -ent pour ils"
+3. Reformulation : "Fais reformuler consigne par un CE1 et un CE2"
+4. Modelage enseignant : "Je chante, tu chantes, il/elle chante, nous chantons, vous chantez, ils/elles chantent - Regardez régularité -e, -es, -e, -ons, -ez, -ent"
+5. Trame collective au tableau
+6. Binômes mixtes : CE2 tuteur CE1 (3 min)
+7. Productions attendues EXACTES : Écrire 2 modèles (CE1 et CE2) - Ex : "Aujourd'hui au marché de Guinguinéo, je chante, tu danses..."
+8. Retour réflexif avec questions : "Qu'est-ce qui était bien? Qu'est-ce qu'on peut améliorer?"
+9. Grille évaluation A/B/C avec règle des 2/3
 
-with col2:
-    st.subheader(f"Fiche - {classe} - {notion}")
-    if st.button("🇸🇳 GÉNÉRER FICHE CEB COMPLÈTE V2", type="primary"):
-        if not notion or not os_input:
-            st.error("OS et Notion obligatoires - Inspecteur exigeant!")
-        else:
-            fiche_data = generer_fiche(discipline_full, notion, classe, os_input)
-            st.markdown(f"**École:** {ecole} | **Classe:** {classe} | **Eff:** {effectif} | **Durée:** {duree}")
-            st.markdown(f"**Discipline:** {discipline_full} | **Leçon:** {notion}")
-            st.markdown(f"**OS:** {os_input} | **Matériel:** {materiel}")
-            st.divider()
-            for row in fiche_data[1:]:
-                with st.expander(f"{row[0]} - {row[1]}"):
-                    st.write(f"🎯 {row[2]}")
-                    st.write(f"👨🏫 MAÎTRE (Questions précises):\n{row[3]}")
-                    st.write(f"👨‍🎓 ÉLÈVES (Réponses attendues):\n{row[4]}")
-                    st.write(f"📦 {row[5]}")
+TECHNIQUES : PLM, Travail collectif, Binômes mixtes, CE2 tuteurs, Modelage, Différenciation, Observation différenciée, Ligne du temps
 
-            doc = Document()
-            p = doc.add_paragraph()
-            p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            run = p.add_run("REPUBLIQUE DU SENEGAL - MEN\nFICHE PEDAGOGIQUE CEB")
-            run.bold = True
-            doc.add_paragraph(f"Ecole: {ecole} | Classe: {classe} | Eff: {effectif} | Durée: {duree}\nDiscipline: {discipline_full} | Leçon: {notion}\nOS: {os_input}\nMatériel: {materiel}")
-            table = doc.add_table(rows=1, cols=6)
-            table.style='Table Grid'
-            hdr = table.rows[0].cells
-            for i,h in enumerate(["PHASE","Étapes","Objectif","Maître (Questions)","Élèves (Réponses)","Supports"]):
-                hdr[i].text = h
-            for r in fiche_data[1:]:
-                row = table.add_row().cells
-                for i in range(6):
-                    row[i].text = r[i]
-            bio = io.BytesIO()
-            doc.save(bio)
-            st.download_button("📥 TÉLÉCHARGER WORD V2", bio.getvalue(), file_name=f"Fiche_V2_{classe}_{notion.replace(' ','_')}.docx", mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document")
-            st.balloons()
+SUPPORTS : Tableau, ardoises, images marché, corpus 5 phrases tirées du contexte, banque de mots 2 niveaux, grille A/B/C
+
+EN BAS DE FICHE, AJOUTE 2 BLOCS :
+POINTS DE VIGILANCE INSPECTEUR MULTIGRADE :
+1. Ne jamais faire même chose pour deux niveaux - CE2 toujours exigence supérieure
+2. Utiliser CE2 comme tuteurs
+3. Observer avec attentes différenciées (A CE1 ≠ A CE2)
+4. Gérer temps strictement 40 min max, au-delà jeunes décrochent
+
+CONSEILS EXIGEANTS DU FORMATEUR :
+1. Prépare deux niveaux consigne avant classe
+2. Écris deux trames au tableau (simple + enrichie)
+3. Ne laisse jamais CE2 s'ennuyer
+4. Valorise progrès chaque niveau
+5. Si confusion, recentre d'abord sur trame commune puis différencie
+
+CONTRAINTE FINALE ABSOLUE :
+- Si Conjugaison présent 1er groupe CP/CE1 : corpus obligatoire = 5 verbes type chanter, danser, jouer, marchander, acheter dans contexte marché. Pas de phrase générique.
+- Si Grammaire CE1-CE2 : corpus = "le grand panier", "la petite vendeuse de Guinguinéo", "les sacs de mil"
+- Si Maths : prix réels (poisson 1500F, mangues 500F)
+- La fiche doit être utilisable immédiatement sans que l'enseignant cherche autre chose.
+
+GÉNÈRE MAINTENANT POUR : [L'utilisateur va mettre ici Classe + Discipline + Leçon ex : CP - Conjugaison - Le présent des verbes du 1er groupe]
