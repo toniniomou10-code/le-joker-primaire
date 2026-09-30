@@ -18,20 +18,19 @@ st.set_page_config(
 )
 
 # -------------------------------------------------------------
-# SYSTEME DE SÉCURITÉ / MOT DE PASSE
+# SYSTEME DE SÉCURITÉ / MOT DE PASSE (SOUPLE ET IGNORANT LES ESPACES/MAJUSCULES)
 # -------------------------------------------------------------
-MOT_DE_PASSE_EXIGE = "Le joker 10"
+MOT_DE_PASSE_EXIGE = "le joker 10"  # Valeur de référence en minuscules
 
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
 
 def check_password():
-    if st.session_state.get("password_input") == MOT_DE_PASSE_EXIGE:
+    pwd_saisi = st.session_state.get("pwd_field", "").strip().lower()
+    if pwd_saisi == MOT_DE_PASSE_EXIGE:
         st.session_state.authenticated = True
-        del st.session_state["password_input"]  # Supprime le mot de passe de la mémoire par sécurité
     else:
         st.session_state.authenticated = False
-        st.error("🔒 Mot de passe incorrect. Veuillez réessayer.")
 
 # Écran de verrouillage si l'utilisateur n'est pas connecté
 if not st.session_state.authenticated:
@@ -41,10 +40,14 @@ if not st.session_state.authenticated:
     st.text_input(
         "Mot de passe :", 
         type="password", 
-        key="password_input", 
-        on_change=check_password
+        key="pwd_field"
     )
-    st.button("Se connecter", on_click=check_password, type="primary")
+    if st.button("Se connecter", type="primary"):
+        check_password()
+        if not st.session_state.authenticated:
+            st.error("🔒 Mot de passe incorrect. Veuillez réessayer.")
+        else:
+            st.rerun()
     st.stop()  # Arrête le chargement du reste de la page tant que le mdp n'est pas bon
 
 # -------------------------------------------------------------
