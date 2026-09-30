@@ -1,0 +1,144 @@
+[
+  {
+    "etape_ceb": "Étape 2 (CE1-CE2)",
+    "classe": "CE1",
+    "domaine": "Langue et Communication",
+    "sous_domaine": "Grammaire",
+    "discipline": "Grammaire",
+    "notion": "Les noms propres",
+    "duree": "30 min",
+    "semaine": "Semaine 3",
+    "fiche_no": "04",
+    "cb": "Intégrer les structures grammaticales fondamentales et le vocabulaire spécifique dans la production de textes narratifs et descriptifs.",
+    "os": "Au terme de la séance, l'élève doit être capable de reconnaître et d'utiliser correctement au moins 3 noms propres dans des phrases simples, en leur mettant systématiquement une majuscule.",
+    "materiel": "Tableau, ardoises, corpus de phrases, étiquettes-mots, cahiers d'essais.",
+    "documentation": "Guide pédagogique CEB Étape 2, Manuel de Grammaire CE1.",
+    "situation_probleme": "Moussa écrit une lettre à son ami Samba qui habite à Thiès. Dans sa lettre, il écrit : 'mon ami samba habite à thiès près du fleuve sénégal.' Le maître lit la phrase et dit que Moussa a oublié une règle très importante pour écrire le nom des personnes et des villes. Aide Moussa à corriger sa phrase.",
+    "etapes": [
+      {
+        "nom": "1. Révision / Préréquis",
+        "duree": "5 min",
+        "activite_maitre": "Demande aux élèves d'écrire sur leurs ardoises deux noms d'objets présents dans la classe.\nConsigne : 'Écrivez le nom d'un objet que vous utilisez pour écrire et le nom d'un meuble de la classe.'",
+        "activite_eleve": "Les élèves écrivent sur leurs ardoises : 'stylo' (ou 'crayon') et 'table' (ou 'bureau'). Ils lèvent les ardoises pour validation."
+      },
+      {
+        "nom": "2. Présentation de la Situation-Problème",
+        "duree": "5 min",
+        "activite_maitre": "Écrit la situation-problème au tableau et la lit à haute voix avec intonation.\nPose des questions de compréhension :\n1. Qui écrit la lettre et à qui ?\n2. Quelle est la remarque du maître ?",
+        "activite_eleve": "Écoutent attentivement, puis répondent aux questions :\n1. C'est Moussa qui écrit à son ami Samba.\n2. Le maître dit que Moussa a oublié une règle pour écrire les noms des personnes et des villes."
+      },
+      {
+        "nom": "3. Analyse / Recherche (Travail de groupe/Individuel)",
+        "duree": "10 min",
+        "activite_maitre": "Demande aux élèves de relever les mots de la phrase qui désignent une personne précise, une ville précise et un fleuve précis.\nConsigne : 'Par quoi ces mots particuliers doivent-ils toujours commencer ? Corrigez la phrase de Moussa sur vos ardoises.'",
+        "activite_eleve": "Les élèves travaillent sur leurs ardoises, identifient 'Samba', 'Thiès', 'Sénégal', et remarquent qu'ils désignent des personnes ou lieux précis. Ils écrivent les mots en mettant une majuscule au début : Samba, Thiès, Sénégal."
+      },
+      {
+        "nom": "4. Synthèse / Structuration",
+        "duree": "5 min",
+        "activite_maitre": "Guide les élèves pour dégager la règle grammaticale (trace écrite).\nQuestions de guidage :\n- Comment appelle-t-on les mots qui désignent une personne, une ville ou un pays précis ?\n- Par quelle lettre doivent-ils toujours commencer ?",
+        "activite_eleve": "Participent à l'élaboration du résumé :\n'Un nom propre désigne une personne, un animal, une ville ou un pays précis (ex: Samba, Fatou, Dakar, Sénégal). Le nom propre commence TOUJOURS par une lettre MAJUSCULE.'"
+      },
+      {
+        "nom": "5. Évaluation / Transfert",
+        "duree": "5 min",
+        "activite_maitre": "Propose l'exercice d'évaluation sur les cahiers de devoirs / d'essais.\nConsigne : 'Réécris la phrase suivante en mettant les majuscules aux noms propres : aminata habite à saint-louis avec son frère amadou.'",
+        "activite_eleve": "Exécutent l'exercice individuellement dans leurs cahiers : 'Aminata habite à Saint-Louis avec son frère Amadou.'"
+      }
+    ]
+  },{
+    "etape_ceb": "Étape 2 (CE1-CE2)",
+    "classe": "CE2",
+    "domaine": "Mathématiques",
+    "sous_domaine": "Numération",
+    "discipline": "Mathématiques",
+    "notion": "Les nombres de 0 à 9 999 : lecture, écriture et décomposition",
+    "duree": "45 min",
+    "semaine": "Semaine 4",
+    "fiche_no": "08",
+    "cb": "Intégrer les nombres entiers et les opérations arithmétiques fondamentales dans la résolution de problèmes de calcul et de la vie courante.",
+    "os": "Au terme de la séance, l'élève doit être capable de lire, écrire en chiffres et en lettres, et décomposer correctement tout nombre entier compris entre 0 et 9 999.",
+    "materiel": "Tableau, ardoises, tableau de numération (M, C, D, U), billets factices, cahiers d'essais.",
+    "documentation": "Guide pédagogique CEB Étape 2, Manuel de Mathématiques CE2.",
+    "situation_probleme": "Au marché de Sandaga, un commerçant compte sa recette de la journée : il a 3 billets de 1 000 F, 5 billets de 500 F, 2 pièces de 100 F et 4 pièces de 5 F. Son apprenti écrit le total sous la forme '3 524 F', mais le commerçant n'est pas sûr du résultat. Aide l'apprenti à vérifier la somme exacte en la décomposant dans le tableau de numération.",
+    "etapes": [
+      {
+        "nom": "1. Révision / Préréquis",
+        "duree": "5 min",
+        "activite_maitre": "Propose un exercice de calcul mental et de dictée de nombres sur les ardoises.\nConsigne : 'Écrivez en chiffres sur vos ardoises : 850, puis 999.'",
+        "activite_eleve": "Les élèves écrivent '850' puis '999' sur leurs ardoises et les lèvent pour contrôle."
+      },
+      {
+        "nom": "2. Présentation de la Situation-Problème",
+        "duree": "5 min",
+        "activite_maitre": "Présente la situation du commerçant au tableau. Pose des questions de compréhension :\n1. De quoi parle le texte ?\n2. Que cherche à vérifier le commerçant ?",
+        "activite_eleve": "Écoutent et répondent :\n1. Du comptage de la recette d'un commerçant au marché Sandaga.\n2. Il veut savoir si le total écrit par son apprenti est exact."
+      },
+      {
+        "nom": "3. Analyse / Recherche (Travail de groupe)",
+        "duree": "15 min",
+        "activite_maitre": "Demande aux élèves de regrouper les sommes par unités de mille, centaines, dizaines et unités, puis de placer les chiffres dans le tableau de numération (M, C, D, U).\nConsigne : 'Calculez la valeur totale de chaque groupe de billets/pièces et écrivez le nombre final.'",
+        "activite_eleve": "En groupes, les élèves manipulent les valeurs : 3 billets de 1000 = 3000 (M), 5 billets de 500 = 2500 (2M + 5C), etc. Ils dressent le tableau de numération et trouvent la somme exacte."
+      },
+      {
+        "nom": "4. Synthèse / Structuration",
+        "duree": "10 min",
+        "activite_maitre": "Anime la mise en commun au tableau. Formalise la règle de lecture/écriture et de décomposition des nombres à 4 chiffres.\nExemple : 5 724 = (5 x 1 000) + (7 x 100) + (2 x 10) + 4.",
+        "activite_eleve": "Participent à la synthèse et recopient la trace écrite : 'Un nombre à 4 chiffres comprend des Unités (U), des Dizaines (D), des Centaines (C) et des Unités de Mille (M).'"
+      },
+      {
+        "nom": "5. Évaluation / Transfert",
+        "duree": "10 min",
+        "activite_maitre": "Donne un exercice individuel sur les cahiers.\nConsigne : '1. Écris en lettres : 4 805. 2. Décompose le nombre 7 352 sous la forme (7x1000) + ...'",
+        "activite_eleve": "Traitent l'exercice individuellement dans leurs cahiers de devoirs."
+      }
+    ]
+  },{
+    "etape_ceb": "Étape 3 (CM1-CM2)",
+    "classe": "CM1",
+    "domaine": "Éducation à la Science et à la Vie Sociale (ESVS)",
+    "sous_domaine": "Initiation à la Science et à la Technologie (IST)",
+    "discipline": "Vivre dans son milieu",
+    "notion": "L'hygiène des aliments et l'eau potable",
+    "duree": "45 min",
+    "semaine": "Semaine 6",
+    "fiche_no": "12",
+    "cb": "Intégrer des notions fondamentales relatives à la santé, à la nutrition et à la préservation de l'environnement dans des comportements du quotidien.",
+    "os": "Au terme de la séance, l'élève doit être capable d'identifier au moins 3 règles de conservation/hygiène des aliments et 2 méthodes simples pour rendre l'eau consommable sans risque.",
+    "materiel": "Images illustrant des aliments exposés aux mouches vs couverts, échantillon d'eau de puits, eau javellisite/bouillie, affiches explicatives.",
+    "documentation": "Guide pédagogique ESVS Étape 3, Manuel IST CM1.",
+    "situation_probleme": "Dans le quartier de Fatou, plusieurs enfants souffrent de maux de ventre et de diarrhées après avoir bu l'eau du puits familial et acheté des mangues coupées vendues au bord de la route sans protection. Le docteur du poste de santé explique que ces maladies sont liées à ce qu'ils ont consommé. Propose des solutions simples et pratiques pour éviter ces maladies dans la famille de Fatou.",
+    "etapes": [
+      {
+        "nom": "1. Révision / Préréquis",
+        "duree": "5 min",
+        "activite_maitre": "Interroge les élèves sur les règles élémentaires d'hygiène corporelle.\nConsigne : 'Citez deux moments importants où il faut obligatoirement se laver les mains avec du savon.'",
+        "activite_eleve": "Répondent : 'Avant de manger' et 'Au sortir des toilettes'."
+      },
+      {
+        "nom": "2. Présentation de la Situation-Problème",
+        "duree": "5 min",
+        "activite_maitre": "Lit la situation-problème au tableau.\nPose des questions de compréhension :\n1. De quoi souffrent les enfants du quartier de Fatou ?\n2. Quelles en sont les causes identifiées par le docteur ?",
+        "activite_eleve": "Répondent :\n1. Ils ont des maux de ventre et des diarrhées.\n2. La consommation de l'eau du puits et des mangues exposées à l'air libre et aux mouches."
+      },
+      {
+        "nom": "3. Analyse / Recherche (Travail de groupe)",
+        "duree": "15 min",
+        "activite_maitre": "Répartit les élèves en sous-groupes avec les planches illustrées.\nConsigne : 'Groupe A : Lister les précautions à prendre avant de consommer des fruits ou repas. Groupe B : Proposer 2 méthodes pour rendre l'eau du puits propre à la boisson.'",
+        "activite_eleve": "Les élèves discutent en groupe, analysent les images et notent leurs idées :\n- Laver les fruits à l'eau propre, couvrir les plats contre les mouches.\n- Faire bouillir l'eau ou utiliser de l'eau de Javel (1 à 2 gouttes par litre)."
+      },
+      {
+        "nom": "4. Synthèse / Structuration",
+        "duree": "10 min",
+        "activite_maitre": "Met en commun les travaux des groupes. Résume les règles d'hygiène alimentaire et de potabilisation de l'eau au tableau.",
+        "activite_eleve": "Prennent note du résumé :\n'1. Aliments : Toujours laver les fruits et légumes à l'eau propre, bien cuire les repas et couvrir les aliments.\n2. Eau : Pour consommer une eau douteuse, il faut la faire bouillir pendant 5 à 10 minutes ou ajouter de l'eau de Javel traitée.'"
+      },
+      {
+        "nom": "5. Évaluation / Transfert",
+        "duree": "10 min",
+        "activite_maitre": "Propose une question d'application sur le cahier d'essais.\nConsigne : 'Ton petit frère veut boire de l'eau tirée directement d'un marigot. Que lui dis-tu et que fais-tu pour l'aider ?'",
+        "activite_eleve": "Rédigent 2 à 3 phrases expliquant le risque de maladie et la nécessité de filtrer/bouillir l'eau d'abord."
+      }
+    ]
+  }
+]
