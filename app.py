@@ -9,8 +9,46 @@ from docx.oxml import parse_xml
 from docx.oxml.ns import nsdecls
 import google.generativeai as genai
 
+# Configuration de la page Streamlit
+st.set_page_config(
+    page_title="SN LE JOKER FICHE - Pédagogie CEB Sénégal",
+    page_icon="🇸🇳",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
 # -------------------------------------------------------------
-# CONFIGURATION GEMINI API (SÉCURISÉE DEPUIS SECRETS)
+# SYSTEME DE SÉCURITÉ / MOT DE PASSE
+# -------------------------------------------------------------
+MOT_DE_PASSE_EXIGE = "Le joker 10"
+
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+
+def check_password():
+    if st.session_state.get("password_input") == MOT_DE_PASSE_EXIGE:
+        st.session_state.authenticated = True
+        del st.session_state["password_input"]  # Supprime le mot de passe de la mémoire par sécurité
+    else:
+        st.session_state.authenticated = False
+        st.error("🔒 Mot de passe incorrect. Veuillez réessayer.")
+
+# Écran de verrouillage si l'utilisateur n'est pas connecté
+if not st.session_state.authenticated:
+    st.title("🔒 Accès Sécurisé")
+    st.info("Veuillez saisir le mot de passe pour accéder à SN LE JOKER FICHE avant de pouvoir générer des fiches.")
+    
+    st.text_input(
+        "Mot de passe :", 
+        type="password", 
+        key="password_input", 
+        on_change=check_password
+    )
+    st.button("Se connecter", on_click=check_password, type="primary")
+    st.stop()  # Arrête le chargement du reste de la page tant que le mdp n'est pas bon
+
+# -------------------------------------------------------------
+# CONFIGURATION GEMINI API
 # -------------------------------------------------------------
 api_key = os.environ.get("GEMINI_API_KEY")
 
@@ -27,7 +65,6 @@ if os.path.exists(DB_FILE):
     try:
         with open(DB_FILE, 'r', encoding='utf-8') as f:
             data_loaded = json.load(f)
-            # Support si le JSON est une liste d'objets ou un dictionnaire
             if isinstance(data_loaded, list):
                 for item in data_loaded:
                     key = f"{item.get('classe')}_{item.get('domaine')}_{item.get('sous_domaine', '')}_{item.get('notion')}"
@@ -36,14 +73,6 @@ if os.path.exists(DB_FILE):
                 fiches_db = data_loaded
     except Exception as e:
         st.error(f"Erreur de lecture de la base locale : {e}")
-
-# Configuration de la page Streamlit
-st.set_page_config(
-    page_title="SN LE JOKER FICHE - Pédagogie CEB Sénégal",
-    page_icon="🇸🇳",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
 
 # Style CSS
 st.markdown("""
@@ -200,12 +229,10 @@ cle_locale = f"{classe_code}_{sel_discipline}_{sel_activite}_{notion_input}"
 
 if cle_locale in fiches_db or elapsed_time >= COOLDOWN_SECONDS:
     if st.sidebar.button("🃏 GÉNÉRER LE JOKER FICHE", type="primary"):
-        # 1. RECHERCHE EN LOCAL D'ABORD
         if cle_locale in fiches_db:
             st.session_state.fiche_data = fiches_db[cle_locale]
             st.toast("⚡ Fiche chargée depuis la base locale (0 API consommée)", icon="🚀")
         else:
-            # 2. GENERATION PAR IA SI SANS FICHE LOCALE
             if not api_key:
                 st.error("⚠️ La clé API Gemini est manquante. Configurez GEMINI_API_KEY dans les Secrets Streamlit.")
             else:
