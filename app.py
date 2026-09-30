@@ -292,7 +292,7 @@ Réponds EXCLUSIVEMENT sous la forme d'un objet JSON valide structuré ainsi :
 }}
 """
                     try:
-                        model = genai.GenerativeModel('gemini-3.8-flash')
+                        model = genai.GenerativeModel('gemini-flash-latest')
                         response = model.generate_content(prompt)
 
                         res_text = response.text.strip()
