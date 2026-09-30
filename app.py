@@ -292,19 +292,21 @@ Réponds EXCLUSIVEMENT sous la forme d'un objet JSON valide structuré ainsi :
 }}
 """
                     try:
-                        model = genai.GenerativeModel('gemini-3.8-flash')
+                        # Forcer la réponse au format JSON structuré
+                        model = genai.GenerativeModel(
+                            'gemini-3.8-flash',
+                            generation_config={"response_mime_type": "application/json"}
+                        )
                         response = model.generate_content(prompt)
 
                         res_text = response.text.strip()
-                        if res_text.startswith("```json"):
-                            res_text = res_text[7:-3].strip()
-                        elif res_text.startswith("```"):
-                            res_text = res_text[3:-3].strip()
 
-                        # Nettoyage des caractères de contrôle invisibles
-                        res_text = res_text.replace('\n', '\\n').replace('\r', '')
+                        # Extraction propre du JSON au cas où il est entouré de balises Markdown
+                        if "```json" in res_text:
+                            res_text = res_text.split("```json")[1].split("```")[0].strip()
+                        elif "```" in res_text:
+                            res_text = res_text.split("```")[1].split("```")[0].strip()
 
-                        # Lecture tolérante du JSON
                         data = json.loads(res_text, strict=False)
                         st.session_state.fiche_data = data
                         st.success("🎉 Fiche générée avec succès via l'IA !")
